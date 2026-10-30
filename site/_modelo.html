@@ -1,0 +1,230 @@
+<title>tintim</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="tintim: dados públicos do Brasil explicados tim-tim por tim-tim. Iniciativa independente e sem fins lucrativos.">
+<link rel="icon" href="data:image/svg+xml,@@ICONE_URI@@">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: cabeçalho fino; abertura com o nome e, logo abaixo, a vitrine do painel de eleições (texto + mapa);
+   depois outros projetos, quem somos, princípios e como trabalhamos, numa coluna de leitura. */
+/* Tema claro, no mesmo padrão do Painel Brasil em Números: plano cinza-azulado, cartões brancos com sombra suave,
+   cabeçalho e rodapé em azul-marinho, fonte Inter. O coral dos pingos é a assinatura do tintim. */
+:root {
+  color-scheme: light;
+  --papel: #f3f5f8; --cartao: #ffffff; --tinta: #0d1726; --tinta-2: #46536a; --tinta-3: #6b778c;
+  --linha: #e6e9ef; --petroleo: #1c5cab; --petroleo-claro: #eef1f5; --coral: #e4684f; --coral-tinta: #c4513a;
+  --marinho: #0b1a33; --marinho-2: #13284a; --marinho-tinta: #c5d3ea; --marinho-muda: #9fb3d1;
+  --mapa-uf: #e4e8ee; --mapa-borda: #c3c9d4; --mapa-pt: #1c5cab;
+  --sombra: 0 1px 2px rgba(13, 23, 38, 0.04), 0 8px 24px rgba(13, 23, 38, 0.06);
+  --display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --texto: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+[hidden] { display: none !important; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--texto); font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01"; }
+.faixa { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.miolo { max-width: 1120px; margin: 0 auto; }
+a { color: var(--petroleo); }
+a:focus-visible, .botao:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; border-radius: 6px; }
+
+/* cabeçalho */
+.topo { padding-block: 14px; background: var(--marinho); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: var(--marinho); }
+.topo .miolo { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.marca svg { height: 30px; width: auto; display: block; }
+.marca .traco { stroke: #ffffff; }
+.marca .pingo { fill: #f08a72; }
+nav.menu { display: flex; gap: 4px; font-size: 15px; }
+nav.menu a { color: var(--marinho-tinta); text-decoration: none; padding: 6px 12px; border-radius: 999px; font-weight: 500; }
+nav.menu a:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+/* abertura */
+.abertura { padding-block: 40px 28px; }
+.abertura h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -0.03em; margin: 0; text-wrap: balance; max-width: 15ch; }
+.abertura h1 em { font-style: normal; color: var(--coral-tinta); }
+.abertura p.chamada { font-size: clamp(18px, 2.2vw, 21px); color: var(--tinta-2); max-width: 58ch; margin: 18px 0 0; }
+
+/* vitrine do painel de eleições */
+.vitrine { padding-block: 8px 56px; }
+.vitrine .cartao { background: var(--cartao); border: 1px solid rgba(13,23,38,.08); box-shadow: var(--sombra); border-radius: 16px; display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; }
+.vitrine .texto { padding: 32px 34px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.selo { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--petroleo); }
+.selo i { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); display: inline-block; }
+.vitrine h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4vw, 42px); line-height: 1.08; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.vitrine p { margin: 0; color: var(--tinta-2); max-width: 52ch; }
+.numeros { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; margin: 4px 0; }
+.numeros div { border-top: 1px solid var(--linha); padding-top: 8px; }
+.numeros b { display: block; font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.numeros span { font-size: 14px; color: var(--tinta-3); }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.botao { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 15.5px; text-decoration: none; border: 1.5px solid var(--marinho); color: var(--marinho); background: var(--cartao); }
+.botao.cheio { background: var(--marinho); border-color: var(--marinho); color: #fff; }
+.botao:hover { filter: brightness(1.08); }
+.endereco { font-size: 14px; color: var(--tinta-3); font-family: ui-monospace, Consolas, monospace; }
+.mapa { background: var(--petroleo-claro); display: grid; place-items: center; padding: 24px; min-width: 0; margin: 0; }
+.mapa svg { width: 100%; max-width: 440px; height: auto; display: block; }
+.mapa .uf path { fill: var(--mapa-uf); stroke: var(--mapa-borda); stroke-width: .8; }
+.mapa .pt circle { fill: var(--mapa-pt); fill-opacity: .55; }
+.mapa figcaption { font-size: 13px; color: var(--tinta-3); text-align: center; margin-top: 8px; }
+
+/* seções de leitura */
+section.bloco { padding-block: 52px; }
+.rotulo { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--petroleo); margin: 0 0 10px; }
+section.bloco h2 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; max-width: 26ch; }
+section.bloco p { max-width: 64ch; color: var(--tinta-2); }
+.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.duas > * { min-width: 0; }
+
+.projeto { background: var(--cartao); border: 1px solid rgba(13,23,38,.08); box-shadow: var(--sombra); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.projeto h3 { font-family: var(--display); font-size: 24px; margin: 0; letter-spacing: -0.01em; }
+.projeto p { margin: 0; }
+.estado { align-self: flex-start; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--linha); color: var(--tinta-2); }
+.estado.no-ar { color: var(--petroleo); border-color: var(--petroleo); }
+.temas { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 4px 0 0; }
+.temas li { font-size: 13.5px; background: var(--petroleo-claro); color: var(--tinta); padding: 3px 10px; border-radius: 6px; }
+
+.principios { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 32px; }
+.principios li { background: var(--cartao); border: 1px solid rgba(13,23,38,.08); box-shadow: var(--sombra); border-radius: 16px; padding: 18px 20px; }
+.principios b { display: block; font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.principios span { color: var(--tinta-2); font-size: 16px; }
+
+.passos { list-style: none; counter-reset: p; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.passos li { counter-increment: p; }
+.passos li::before { content: counter(p); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--coral); color: #fff; font-family: var(--display); font-weight: 700; margin-bottom: 10px; }
+.passos b { display: block; font-family: var(--display); font-size: 17px; font-weight: 700; }
+.passos span { color: var(--tinta-2); font-size: 16px; }
+
+footer { padding-block: 32px 44px; background: var(--marinho); font-size: 14px; color: var(--marinho-muda); margin-top: 24px; }
+footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
+footer .marca svg { height: 26px; }
+
+@media (max-width: 860px) {
+  .vitrine .cartao { grid-template-columns: 1fr; }
+  .mapa { order: -1; padding: 18px; }
+  .mapa svg { max-width: 300px; }
+  .vitrine .texto { padding: 24px 20px; }
+  .duas { grid-template-columns: 1fr; gap: 24px; }
+  .principios, .passos { grid-template-columns: 1fr; gap: 20px; }
+  nav.menu { gap: 16px; font-size: 14px; }
+}
+</style>
+
+<header class="topo faixa">
+  <div class="miolo">
+    <a class="marca" href="#" aria-label="tintim, início">@@LOGO@@</a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#projetos">Projetos</a><a href="#quem-somos">Quem somos</a><a href="#principios">Princípios</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="abertura faixa">
+    <div class="miolo">
+      <h1>Dados públicos, <em>tim-tim por tim-tim.</em></h1>
+      <p class="chamada">O governo publica todos os dias milhares de arquivos com informações que são de todos nós. O tintim baixa esses arquivos das fontes oficiais, confere e transforma em páginas que qualquer pessoa consegue ler.</p>
+    </div>
+  </section>
+
+  <section class="vitrine faixa" aria-labelledby="t-eleicoes">
+    <div class="miolo">
+      <div class="cartao">
+        <div class="texto">
+          <span class="selo"><i></i>No ar · Eleições 2026</span>
+          <h2 id="t-eleicoes">Presidente 2026, seção por seção</h2>
+          <p>Os resultados oficiais de cada urna do país, no 1º e no 2º turno, em um mapa que você pode explorar até a escola onde votou. Junto, um relatório que confere as contas, explica de onde vieram os votos ganhos no 2º turno e aplica os testes estatísticos usados no mundo inteiro, com o mesmo tratamento para os dois candidatos.</p>
+          <div class="numeros">
+            <div><b>499.248</b><span>seções eleitorais</span></div>
+            <div><b>94 mil</b><span>locais de votação no mapa</span></div>
+            <div><b>2 turnos</b><span>comparados urna a urna</span></div>
+            <div><b>0</b><span>urnas com mais votantes que eleitores</span></div>
+          </div>
+          <div class="acoes">
+            <a class="botao cheio" href="https://eleicoes.tintim.online">Abrir o painel</a>
+            <a class="botao" href="https://eleicoes.tintim.online/#relatorios">Ler o relatório</a>
+          </div>
+          <span class="endereco">eleicoes.tintim.online</span>
+        </div>
+        <figure class="mapa">
+          @@MAPA@@
+          <figcaption>Cada ponto é um local de votação (amostra de 7 mil dos 94 mil)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco faixa" id="projetos">
+    <div class="miolo">
+      <p class="rotulo">Projetos</p>
+      <h2>O que já está pronto e o que vem a seguir</h2>
+      <div class="duas">
+        <article class="projeto">
+          <span class="estado no-ar">No ar</span>
+          <h3>Eleições 2026</h3>
+          <p>Mapa de todas as seções eleitorais, comparação entre os turnos e relatório estatístico com os microdados do Tribunal Superior Eleitoral. Também em PDF, para quem preferir ler fora do site.</p>
+          <ul class="temas"><li>Votos por urna</li><li>Abstenção, brancos e nulos</li><li>Horário de encerramento</li><li>Testes estatísticos</li></ul>
+          <a href="https://eleicoes.tintim.online">eleicoes.tintim.online</a>
+        </article>
+        <article class="projeto">
+          <span class="estado">Em construção</span>
+          <h3>Brasil em Números</h3>
+          <p>Um painel do Estado brasileiro com dados oficiais: economia, dinheiro público, Congresso, atos do governo e o que tudo isso significa no bolso de quem mora aqui. Com um guia que explica a economia do zero.</p>
+          <ul class="temas"><li>Economia</li><li>Orçamento e impostos</li><li>Votações do Congresso</li><li>Atos do Diário Oficial</li><li>Sua cidade e seu estado</li></ul>
+          <span class="endereco">em breve</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco faixa" id="quem-somos">
+    <div class="miolo duas">
+      <div>
+        <p class="rotulo">Quem somos</p>
+        <h2>Uma iniciativa independente para abrir os dados públicos a todo mundo</h2>
+      </div>
+      <div>
+        <p>O tintim é uma organização sem fins lucrativos com um objetivo: democratizar e facilitar o acesso da população aos dados públicos do Brasil.</p>
+        <p>Resultados eleitorais, orçamento, contratos, votações no Congresso. Quase tudo isso já é público, mas fica espalhado em centenas de portais, em planilhas enormes e em linguagem técnica. Na prática, só quem tem tempo e conhecimento consegue usar.</p>
+        <p>O nome vem da expressão "tim-tim por tim-tim": explicar com calma, em detalhe, até ficar claro. O tintim não tem vínculo com governos, partidos ou candidatos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco faixa" id="principios">
+    <div class="miolo">
+      <p class="rotulo">Princípios</p>
+      <h2>As regras que seguimos em todos os projetos</h2>
+      <ul class="principios">
+        <li><b>Só fontes oficiais</b><span>Cada número vem de um órgão público e mostra de onde veio, com link para o arquivo original.</span></li>
+        <li><b>Mesmo tratamento para todos</b><span>Toda conta feita para um lado é feita para o outro. Descrevemos os dados sem tomar partido.</span></li>
+        <li><b>Linguagem de gente</b><span>Textos que qualquer pessoa entende, no celular ou no computador, sem jargão.</span></li>
+        <li><b>Método aberto</b><span>O caminho de cada análise fica registrado, para que qualquer pessoa possa refazer e conferir.</span></li>
+        <li><b>Grátis e sem cadastro</b><span>Nada de login, assinatura ou anúncio. Informação pública fica aberta.</span></li>
+        <li><b>Erro se corrige em público</b><span>Quando encontramos um erro, corrigimos e registramos o que mudou.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloco faixa">
+    <div class="miolo">
+      <p class="rotulo">Como trabalhamos</p>
+      <h2>Do arquivo do governo até a sua tela</h2>
+      <ol class="passos">
+        <li><b>Coletamos</b><span>Baixamos os arquivos direto dos portais oficiais, como o do TSE, do Banco Central, do IBGE e do Tesouro.</span></li>
+        <li><b>Conferimos</b><span>Checamos se os totais batem com os números oficiais antes de publicar qualquer coisa.</span></li>
+        <li><b>Explicamos</b><span>Transformamos tudo em mapas, gráficos e textos curtos, sempre com a fonte ao lado.</span></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="faixa">
+  <div class="miolo">
+    <span class="marca">@@LOGO@@</span>
+    <span>tintim.online · dados públicos, tim-tim por tim-tim · sem vínculo com governos, partidos ou candidatos</span>
+  </div>
+</footer>
