@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="tintim: dados públicos do Brasil explicados tim-tim por tim-tim. Iniciativa independente e sem fins lucrativos.">
+<meta name="description" content="tintim: dados públicos do Brasil explicados tim-tim por tim-tim e o apostas, banco de questões grátis para o ENEM. Iniciativa independente e sem fins lucrativos.">
 <link rel="icon" href="data:image/svg+xml,@@ICONE_URI@@">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
@@ -71,12 +71,37 @@ nav.menu a:hover { background: rgba(255,255,255,.08); color: #fff; }
 .mapa .pt circle { fill: var(--mapa-pt); fill-opacity: .55; }
 .mapa figcaption { font-size: 13px; color: var(--tinta-3); text-align: center; margin-top: 8px; }
 
+/* vitrine do apostas: a ilustração imita uma questão do site */
+.vitrine.enem { padding-top: 0; }
+.vitrine.enem .selo { color: var(--coral-tinta); }
+.ilustra { background: linear-gradient(160deg, #0b1a33, #13284a); display: grid; place-items: center; padding: 28px; margin: 0; min-width: 0; }
+.q-demo { width: 100%; max-width: 380px; background: #fff; border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.35); overflow: hidden; font-size: 13.5px; }
+.q-demo header { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--linha); }
+.q-demo header b { font-size: 16px; font-weight: 800; letter-spacing: -.01em; }
+.q-demo .tag { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #e7f5ee; color: #1f8a5b; }
+.q-demo .tempo { margin-left: auto; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--marinho); background: var(--petroleo-claro); padding: 3px 9px; border-radius: 999px; }
+.q-demo .enun { padding: 12px 14px 4px; color: var(--tinta); line-height: 1.45; }
+.q-demo .enun i { display: block; height: 8px; border-radius: 4px; background: var(--linha); margin: 7px 0; }
+.q-demo .enun i.curta { width: 62%; }
+.q-demo ol { list-style: none; padding: 8px 14px 14px; margin: 0; display: grid; gap: 7px; }
+.q-demo li { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--linha); border-radius: 10px; padding: 7px 10px; color: var(--tinta-2); }
+.q-demo li span { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--linha); display: grid; place-items: center; font-weight: 800; font-size: 12px; flex: none; }
+.q-demo li.certa { border-color: #1f8a5b; background: #e7f5ee; color: var(--tinta); }
+.q-demo li.certa span { background: #1f8a5b; border-color: #1f8a5b; color: #fff; }
+.q-demo .res { margin: 0 14px 14px; padding: 8px 10px; border-radius: 10px; background: #e7f5ee; color: #1f8a5b; font-weight: 700; }
+.ilustra figcaption { font-size: 13px; color: var(--marinho-muda); text-align: center; margin-top: 12px; }
+.parceria { font-size: 14px; color: var(--tinta-3); }
+.parceria b { color: var(--tinta-2); }
+
 /* seções de leitura */
 section.bloco { padding-block: 52px; }
 .rotulo { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--petroleo); margin: 0 0 10px; }
 section.bloco h2 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; max-width: 26ch; }
 section.bloco p { max-width: 64ch; color: var(--tinta-2); }
 .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.tres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.tres > * { min-width: 0; }
+.estado.gratis { color: var(--coral-tinta); border-color: var(--coral); }
 .duas > * { min-width: 0; }
 
 .projeto { background: var(--cartao); border: 1px solid rgba(13,23,38,.08); box-shadow: var(--sombra); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
@@ -107,7 +132,8 @@ footer .marca svg { height: 26px; }
   .mapa { order: -1; padding: 18px; }
   .mapa svg { max-width: 300px; }
   .vitrine .texto { padding: 24px 20px; }
-  .duas { grid-template-columns: 1fr; gap: 24px; }
+  .duas, .tres { grid-template-columns: 1fr; gap: 24px; }
+  .ilustra { order: -1; padding: 20px; }
   .principios, .passos { grid-template-columns: 1fr; gap: 20px; }
   nav.menu { gap: 16px; font-size: 14px; }
 }
@@ -117,7 +143,7 @@ footer .marca svg { height: 26px; }
   <div class="miolo">
     <a class="marca" href="#" aria-label="tintim, início">@@LOGO@@</a>
     <nav class="menu" aria-label="Seções">
-      <a href="#projetos">Projetos</a><a href="#quem-somos">Quem somos</a><a href="#principios">Princípios</a>
+      <a href="#projetos">Projetos</a><a href="#enem">ENEM</a><a href="#quem-somos">Quem somos</a><a href="#principios">Princípios</a>
     </nav>
   </div>
 </header>
@@ -157,17 +183,60 @@ footer .marca svg { height: 26px; }
     </div>
   </section>
 
+  <section class="vitrine enem faixa" id="enem" aria-labelledby="t-apostas">
+    <div class="miolo">
+      <div class="cartao">
+        <div class="texto">
+          <span class="selo"><i></i>No ar · ENEM 2026 · grátis</span>
+          <h2 id="t-apostas">apostas: as questões em que a gente aposta para o 2º dia</h2>
+          <p>Um banco de questões de Matemática e Ciências da Natureza escolhidas por cair muito no ENEM, sempre com aplicação real: conta de luz, remédio, financiamento, rio poluído. Você responde, confere o gabarito comentado e vê em quais assuntos precisa revisar. Dá para fazer simulado de 90 questões com cronômetro de 5 horas, como no dia da prova.</p>
+          <div class="numeros">
+            <div><b>260</b><span>questões com gabarito comentado</span></div>
+            <div><b>2 simulados</b><span>de 90 questões, cronometrados</span></div>
+            <div><b>5 horas</b><span>de prova, como no 2º dia</span></div>
+            <div><b>R$ 0</b><span>sem assinatura e sem anúncio</span></div>
+          </div>
+          <div class="acoes">
+            <a class="botao cheio" href="https://apostas.tintim.online">Começar a treinar</a>
+          </div>
+          <span class="parceria">Simulados em parceria com o <b>revisaí</b> (@revisai.enem) · acesso com código de convite</span>
+          <span class="endereco">apostas.tintim.online</span>
+        </div>
+        <figure class="ilustra" aria-hidden="true">
+          <div class="q-demo">
+            <header><b>Questão 4</b><span class="tag">Biologia</span><span class="tempo">4:12:37</span></header>
+            <div class="enun"><i></i><i></i><i class="curta"></i></div>
+            <ol>
+              <li><span>A</span>Arremesso de peso.</li>
+              <li><span>B</span>Corrida de 100 metros rasos.</li>
+              <li class="certa"><span>E</span>Maratona.</li>
+            </ol>
+            <p class="res">✓ Acertou! A resposta é E.</p>
+          </div>
+          <figcaption>Questão, cronômetro e correção na hora</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="bloco faixa" id="projetos">
     <div class="miolo">
       <p class="rotulo">Projetos</p>
       <h2>O que já está pronto e o que vem a seguir</h2>
-      <div class="duas">
+      <div class="tres">
         <article class="projeto">
           <span class="estado no-ar">No ar</span>
           <h3>Eleições 2026</h3>
           <p>Mapa de todas as seções eleitorais, comparação entre os turnos e relatório estatístico com os microdados do Tribunal Superior Eleitoral. Também em PDF, para quem preferir ler fora do site.</p>
           <ul class="temas"><li>Votos por urna</li><li>Abstenção, brancos e nulos</li><li>Horário de encerramento</li><li>Testes estatísticos</li></ul>
           <a href="https://eleicoes.tintim.online">eleicoes.tintim.online</a>
+        </article>
+        <article class="projeto">
+          <span class="estado gratis">No ar · grátis</span>
+          <h3>apostas · ENEM</h3>
+          <p>Banco de questões para o 2º dia do ENEM, com questões direcionadas ao que mais cai, gabarito comentado, desempenho por assunto e simulados cronometrados em parceria com o revisaí.</p>
+          <ul class="temas"><li>Matemática</li><li>Física</li><li>Química</li><li>Biologia</li><li>Simulados de 5 h</li></ul>
+          <a href="https://apostas.tintim.online">apostas.tintim.online</a>
         </article>
         <article class="projeto">
           <span class="estado">Em construção</span>
@@ -203,7 +272,7 @@ footer .marca svg { height: 26px; }
         <li><b>Mesmo tratamento para todos</b><span>Toda conta feita para um lado é feita para o outro. Descrevemos os dados sem tomar partido.</span></li>
         <li><b>Linguagem de gente</b><span>Textos que qualquer pessoa entende, no celular ou no computador, sem jargão.</span></li>
         <li><b>Método aberto</b><span>O caminho de cada análise fica registrado, para que qualquer pessoa possa refazer e conferir.</span></li>
-        <li><b>Grátis e sem cadastro</b><span>Nada de login, assinatura ou anúncio. Informação pública fica aberta.</span></li>
+        <li><b>Grátis e sem anúncio</b><span>Nada de assinatura ou propaganda. Os painéis de dados públicos abrem sem login.</span></li>
         <li><b>Erro se corrige em público</b><span>Quando encontramos um erro, corrigimos e registramos o que mudou.</span></li>
       </ul>
     </div>
