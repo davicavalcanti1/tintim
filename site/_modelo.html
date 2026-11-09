@@ -44,7 +44,7 @@ nav.menu a:hover { background: rgba(255,255,255,.08); color: #fff; }
 
 /* abertura */
 .abertura { padding-block: 40px 28px; }
-.abertura h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -0.03em; margin: 0; text-wrap: balance; max-width: 15ch; }
+.abertura h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -0.03em; margin: 0; text-wrap: balance; max-width: 20ch; }
 .abertura h1 em { font-style: normal; color: var(--coral-tinta); }
 .abertura p.chamada { font-size: clamp(18px, 2.2vw, 21px); color: var(--tinta-2); max-width: 58ch; margin: 18px 0 0; }
 
@@ -93,6 +93,58 @@ nav.menu a:hover { background: rgba(255,255,255,.08); color: #fff; }
 .parceria { font-size: 14px; color: var(--tinta-3); }
 .parceria b { color: var(--tinta-2); }
 
+/* menu de projetos: três cartões lado a lado, cada um com sua ilustração em cima */
+.menu-proj { padding-block: 4px 40px; }
+.menu-proj .grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.proj { background: var(--cartao); border: 1px solid rgba(13,23,38,.08); box-shadow: var(--sombra); border-radius: 18px; overflow: hidden;
+  display: flex; flex-direction: column; min-width: 0; transition: transform .15s, box-shadow .15s; }
+a.proj { color: inherit; text-decoration: none; }
+a.proj:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(13,23,38,.05), 0 16px 36px rgba(13,23,38,.12); }
+.proj-vis { height: 210px; display: grid; place-items: center; overflow: hidden; position: relative; margin: 0; }
+.proj-vis.v-mapa { background: var(--petroleo-claro); padding: 14px; }
+.proj-vis.v-mapa svg { height: 100%; width: auto; max-width: 100%; display: block; }
+.proj-vis.v-mapa .uf path { fill: var(--mapa-uf); stroke: var(--mapa-borda); stroke-width: .8; }
+.proj-vis.v-mapa .pt circle { fill: var(--mapa-pt); fill-opacity: .55; }
+.proj-vis.v-enem { background: linear-gradient(160deg, #0b1a33, #13284a); padding: 14px 18px; }
+.proj-vis.v-num { background: #fdf1ee; }
+.proj-corpo { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.proj-corpo h2 { font-family: var(--display); font-weight: 800; font-size: 25px; line-height: 1.12; letter-spacing: -0.02em; margin: 0; }
+.proj-corpo p { margin: 0; color: var(--tinta-2); font-size: 15.5px; }
+.proj-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; margin: 2px 0; }
+.proj-nums div { border-top: 1px solid var(--linha); padding-top: 6px; }
+.proj-nums b { display: block; font-family: var(--display); font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.proj-nums span { font-size: 12.5px; color: var(--tinta-3); }
+.proj-pe { margin-top: auto; padding-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.proj-ir { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 999px; background: var(--marinho); color: #fff; font-weight: 600; font-size: 15px; }
+.proj-ir::after { content: "›"; font-size: 19px; line-height: 1; }
+.proj.breve .proj-ir { background: var(--petroleo-claro); color: var(--tinta-3); }
+.proj.breve .proj-ir::after { content: ""; }
+.proj-pe .endereco { font-size: 12.5px; }
+.selo.coral { color: var(--coral-tinta); }
+.selo.cinza { color: var(--tinta-3); }
+.selo.cinza i { background: var(--tinta-3); }
+.parceria { font-size: 13px; color: var(--tinta-3); }
+.parceria b { color: var(--tinta-2); }
+/* questão de exemplo (apostas) */
+.q-demo { width: 100%; max-width: 300px; background: #fff; border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,.35); overflow: hidden; font-size: 12px; }
+.q-demo header { display: flex; align-items: center; gap: 6px; padding: 9px 11px; border-bottom: 1px solid var(--linha); }
+.q-demo header b { font-size: 13.5px; font-weight: 800; }
+.q-demo .tag { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: #e7f5ee; color: #1f8a5b; }
+.q-demo .tempo { margin-left: auto; font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--marinho); background: var(--petroleo-claro); padding: 2px 8px; border-radius: 999px; }
+.q-demo .enun { padding: 8px 11px 0; }
+.q-demo .enun i { display: block; height: 6px; border-radius: 3px; background: var(--linha); margin: 5px 0; }
+.q-demo .enun i.curta { width: 60%; }
+.q-demo ol { list-style: none; padding: 6px 11px 11px; margin: 0; display: grid; gap: 5px; }
+.q-demo li { display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--linha); border-radius: 8px; padding: 5px 8px; color: var(--tinta-2); }
+.q-demo li span { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--linha); display: grid; place-items: center; font-weight: 800; font-size: 10.5px; flex: none; }
+.q-demo li.certa { border-color: #1f8a5b; background: #e7f5ee; color: var(--tinta); }
+.q-demo li.certa span { background: #1f8a5b; border-color: #1f8a5b; color: #fff; }
+/* gráfico de exemplo (Brasil em Números) */
+.barras { display: flex; align-items: flex-end; gap: 10px; height: 120px; }
+.barras i { width: 26px; border-radius: 6px 6px 0 0; background: var(--coral); opacity: .35; }
+.barras i:nth-child(2n) { opacity: .6; }
+.barras i:last-child { opacity: 1; }
+
 /* seções de leitura */
 section.bloco { padding-block: 52px; }
 .rotulo { font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--petroleo); margin: 0 0 10px; }
@@ -128,6 +180,8 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 footer .marca svg { height: 26px; }
 
 @media (max-width: 860px) {
+  .menu-proj .grade { grid-template-columns: 1fr; gap: 16px; }
+  .proj-vis { height: 180px; }
   .vitrine .cartao { grid-template-columns: 1fr; }
   .mapa { order: -1; padding: 18px; }
   .mapa svg { max-width: 300px; }
@@ -143,7 +197,7 @@ footer .marca svg { height: 26px; }
   <div class="miolo">
     <a class="marca" href="#" aria-label="tintim, início">@@LOGO@@</a>
     <nav class="menu" aria-label="Seções">
-      <a href="#projetos">Projetos</a><a href="#enem">ENEM</a><a href="#quem-somos">Quem somos</a><a href="#principios">Princípios</a>
+      <a href="#projetos">Projetos</a><a href="#quem-somos">Quem somos</a><a href="#principios">Princípios</a>
     </nav>
   </div>
 </header>
@@ -151,100 +205,57 @@ footer .marca svg { height: 26px; }
 <main>
   <section class="abertura faixa">
     <div class="miolo">
-      <h1>Dados públicos, <em>tim-tim por tim-tim.</em></h1>
-      <p class="chamada">O governo publica todos os dias milhares de arquivos com informações que são de todos nós. O tintim baixa esses arquivos das fontes oficiais, confere e transforma em páginas que qualquer pessoa consegue ler.</p>
+      <h1>Dados públicos e estudo, <em>tim‑tim por tim‑tim.</em></h1>
+      <p class="chamada">O tintim pega informação que é de todos e transforma em páginas que qualquer pessoa entende. Escolha por onde começar.</p>
     </div>
   </section>
 
-  <section class="vitrine faixa" aria-labelledby="t-eleicoes">
-    <div class="miolo">
-      <div class="cartao">
-        <div class="texto">
+  <section class="menu-proj faixa" id="projetos" aria-label="Projetos">
+    <div class="miolo grade">
+      <a class="proj" href="https://eleicoes.tintim.online">
+        <figure class="proj-vis v-mapa" aria-hidden="true">@@MAPA@@</figure>
+        <div class="proj-corpo">
           <span class="selo"><i></i>No ar · Eleições 2026</span>
-          <h2 id="t-eleicoes">Presidente 2026, seção por seção</h2>
-          <p>Os resultados oficiais de cada urna do país, no 1º e no 2º turno, em um mapa que você pode explorar até a escola onde votou. Junto, um relatório que confere as contas, explica de onde vieram os votos ganhos no 2º turno e aplica os testes estatísticos usados no mundo inteiro, com o mesmo tratamento para os dois candidatos.</p>
-          <div class="numeros">
+          <h2>Presidente 2026, seção por seção</h2>
+          <p>Os resultados oficiais de cada urna do país, nos dois turnos, num mapa que vai até a escola onde você votou, com relatório estatístico.</p>
+          <div class="proj-nums">
             <div><b>499.248</b><span>seções eleitorais</span></div>
-            <div><b>94 mil</b><span>locais de votação no mapa</span></div>
-            <div><b>2 turnos</b><span>comparados urna a urna</span></div>
-            <div><b>0</b><span>urnas com mais votantes que eleitores</span></div>
+            <div><b>94 mil</b><span>locais no mapa</span></div>
           </div>
-          <div class="acoes">
-            <a class="botao cheio" href="https://eleicoes.tintim.online">Abrir o painel</a>
-            <a class="botao" href="https://eleicoes.tintim.online/#relatorios">Ler o relatório</a>
-          </div>
-          <span class="endereco">eleicoes.tintim.online</span>
+          <div class="proj-pe"><span class="proj-ir">Abrir o painel</span><span class="endereco">eleicoes.tintim.online</span></div>
         </div>
-        <figure class="mapa">
-          @@MAPA@@
-          <figcaption>Cada ponto é um local de votação (amostra de 7 mil dos 94 mil)</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="vitrine enem faixa" id="enem" aria-labelledby="t-apostas">
-    <div class="miolo">
-      <div class="cartao">
-        <div class="texto">
-          <span class="selo"><i></i>No ar · ENEM 2026 · grátis</span>
-          <h2 id="t-apostas">apostas: as questões em que a gente aposta para o 2º dia</h2>
-          <p>Um banco de questões de Matemática e Ciências da Natureza escolhidas por cair muito no ENEM, sempre com aplicação real: conta de luz, remédio, financiamento, rio poluído. Você responde, confere o gabarito comentado e vê em quais assuntos precisa revisar. Dá para fazer simulado de 90 questões com cronômetro de 5 horas, como no dia da prova.</p>
-          <div class="numeros">
-            <div><b>260</b><span>questões com gabarito comentado</span></div>
-            <div><b>2 simulados</b><span>de 90 questões, cronometrados</span></div>
-            <div><b>5 horas</b><span>de prova, como no 2º dia</span></div>
-            <div><b>R$ 0</b><span>sem assinatura e sem anúncio</span></div>
-          </div>
-          <div class="acoes">
-            <a class="botao cheio" href="https://apostas.tintim.online">Começar a treinar</a>
-          </div>
-          <span class="parceria">Simulados em parceria com o <b>revisaí</b> (@revisai.enem) · acesso com código de convite</span>
-          <span class="endereco">apostas.tintim.online</span>
-        </div>
-        <figure class="ilustra" aria-hidden="true">
+      </a>
+      <a class="proj" href="https://apostas.tintim.online">
+        <figure class="proj-vis v-enem" aria-hidden="true">
           <div class="q-demo">
             <header><b>Questão 4</b><span class="tag">Biologia</span><span class="tempo">4:12:37</span></header>
-            <div class="enun"><i></i><i></i><i class="curta"></i></div>
-            <ol>
-              <li><span>A</span>Arremesso de peso.</li>
-              <li><span>B</span>Corrida de 100 metros rasos.</li>
-              <li class="certa"><span>E</span>Maratona.</li>
-            </ol>
-            <p class="res">✓ Acertou! A resposta é E.</p>
+            <ol><li><span>A</span>Arremesso de peso.</li><li><span>B</span>Corrida de 100 m.</li><li class="certa"><span>E</span>Maratona.</li></ol>
           </div>
-          <figcaption>Questão, cronômetro e correção na hora</figcaption>
         </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloco faixa" id="projetos">
-    <div class="miolo">
-      <p class="rotulo">Projetos</p>
-      <h2>O que já está pronto e o que vem a seguir</h2>
-      <div class="tres">
-        <article class="projeto">
-          <span class="estado no-ar">No ar</span>
-          <h3>Eleições 2026</h3>
-          <p>Mapa de todas as seções eleitorais, comparação entre os turnos e relatório estatístico com os microdados do Tribunal Superior Eleitoral. Também em PDF, para quem preferir ler fora do site.</p>
-          <ul class="temas"><li>Votos por urna</li><li>Abstenção, brancos e nulos</li><li>Horário de encerramento</li><li>Testes estatísticos</li></ul>
-          <a href="https://eleicoes.tintim.online">eleicoes.tintim.online</a>
-        </article>
-        <article class="projeto">
-          <span class="estado gratis">No ar · grátis</span>
-          <h3>apostas · ENEM</h3>
-          <p>Banco de questões para o 2º dia do ENEM, com questões direcionadas ao que mais cai, gabarito comentado, desempenho por assunto e simulados cronometrados em parceria com o revisaí.</p>
-          <ul class="temas"><li>Matemática</li><li>Física</li><li>Química</li><li>Biologia</li><li>Simulados de 5 h</li></ul>
-          <a href="https://apostas.tintim.online">apostas.tintim.online</a>
-        </article>
-        <article class="projeto">
-          <span class="estado">Em construção</span>
-          <h3>Brasil em Números</h3>
-          <p>Um painel do Estado brasileiro com dados oficiais: economia, dinheiro público, Congresso, atos do governo e o que tudo isso significa no bolso de quem mora aqui. Com um guia que explica a economia do zero.</p>
-          <ul class="temas"><li>Economia</li><li>Orçamento e impostos</li><li>Votações do Congresso</li><li>Atos do Diário Oficial</li><li>Sua cidade e seu estado</li></ul>
-          <span class="endereco">em breve</span>
-        </article>
+        <div class="proj-corpo">
+          <span class="selo coral"><i></i>No ar · ENEM 2026 · grátis</span>
+          <h2>apostas: questões para o 2º dia</h2>
+          <p>Questões de Matemática e Natureza escolhidas por cair muito no ENEM, com gabarito comentado, desempenho por assunto e simulado de 5 horas.</p>
+          <div class="proj-nums">
+            <div><b>260</b><span>questões comentadas</span></div>
+            <div><b>2 simulados</b><span>cronometrados</span></div>
+          </div>
+          <span class="parceria">Simulados em parceria com o <b>revisaí</b> · acesso com convite</span>
+          <div class="proj-pe"><span class="proj-ir">Começar a treinar</span><span class="endereco">apostas.tintim.online</span></div>
+        </div>
+      </a>
+      <div class="proj breve">
+        <figure class="proj-vis v-num" aria-hidden="true"><div class="barras"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:88%"></i></div></figure>
+        <div class="proj-corpo">
+          <span class="selo cinza"><i></i>Em construção</span>
+          <h2>Brasil em Números</h2>
+          <p>Economia, dinheiro público, Congresso e atos do governo com dados oficiais, e o que tudo isso muda no bolso de quem mora aqui.</p>
+          <div class="proj-nums">
+            <div><b>Economia</b><span>explicada do zero</span></div>
+            <div><b>Sua cidade</b><span>e seu estado</span></div>
+          </div>
+          <div class="proj-pe"><span class="proj-ir">Em breve</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -256,7 +267,7 @@ footer .marca svg { height: 26px; }
         <h2>Uma iniciativa independente para abrir os dados públicos a todo mundo</h2>
       </div>
       <div>
-        <p>O tintim é uma organização sem fins lucrativos com um objetivo: democratizar e facilitar o acesso da população aos dados públicos do Brasil.</p>
+        <p>O tintim é uma organização sem fins lucrativos com um objetivo: democratizar e facilitar o acesso da população aos dados públicos do Brasil. Pelo mesmo caminho, também fazemos material de estudo gratuito, como o apostas para o ENEM.</p>
         <p>Resultados eleitorais, orçamento, contratos, votações no Congresso. Quase tudo isso já é público, mas fica espalhado em centenas de portais, em planilhas enormes e em linguagem técnica. Na prática, só quem tem tempo e conhecimento consegue usar.</p>
         <p>O nome vem da expressão "tim-tim por tim-tim": explicar com calma, em detalhe, até ficar claro. O tintim não tem vínculo com governos, partidos ou candidatos.</p>
       </div>
